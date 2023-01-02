@@ -3,7 +3,7 @@
 The program is a console game 'tic-tac-toe'
 
 It features a player versus player mode and a player versus computer mode.
-The player versus computer mode have not been implement a difficulty settings yet and the default difficulty is set to hardest
+The player versus computer mode have not been implemented a difficulty settings yet and the default difficulty is set to hardest
 The player versus player is pretty simple. Player 1 is token 'X' and Player 2 is token 'O'.
 
 If you wish to ask for a pull request, feel free.
