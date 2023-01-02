@@ -17,3 +17,4 @@ The idea came up with the AI is thought of by the author of this repository prov
 If you wish to improve it by implementing the likes of 'minimax algorithms', feel free.
 
 The source code is free of use.
+Have fun and try to beat the bot if you can ;)
