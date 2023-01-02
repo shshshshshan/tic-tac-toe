@@ -283,18 +283,41 @@ def bot_move(bot_number):
 
             if len(p) == 2 and sorted([p[0][0], p[1][0]]) in cases or len(bot_moves) > 0:
                 diag_move: bool = False
+                opponent_moves = [i for i in range(len(board)) if board[i] == player_dict[3 - bot_number]]
 
-                for x in p:
-                	if x[0] in range(1, 9, 2):
-                		diag_move = True
-                		
+                if len(p) != 0: # This block will catch the case where there is an upcoming 2 winnable combination from our opponent
+                    best_moves = []
+                    for i in opponent_moves:
+                        if i % 2 == 1:
+                            for pool in narrowed_pool:
+                                if i in pool:
+                                    best_moves.append(pool)
+
+                    moves = []
+                    for lst in best_moves:
+                        for elem in lst:
+                            moves.append(elem)
+
+                    while len(moves) != 0:
+                        slot = rand.choice(moves)
+
+                        if slot % 2 == 0 and board[slot] == ' ':
+                            board[slot] = player_dict[bot_number]
+                            del p, pool, narrowed_pool, moves, best_moves
+                            return
+
+                for x in opponent_moves:
+                    if x in range(1, 9, 2):
+                        diag_move = True
+
                 if diag_move:
-	                for x in range(9):
-	                    if x % 2 == 0: # Same logic as before, corner cells
-	                        if board[x] == ' ':
-	                            board[x] = player_dict[bot_number]
-	                            del p, pool, narrowed_pool # Memory handling
-	                            return
+
+                    for x in range(9):
+                        if x % 2 == 0: # Same logic as before, corner cells
+                            if board[x] == ' ':
+                                board[x] = player_dict[bot_number]
+                                del p, pool, narrowed_pool # Memory handling
+                                return
 
             for x in range(9):
                 if x % 2 == 1: # Testing all non-corner since all corner cells are occupied at this point
