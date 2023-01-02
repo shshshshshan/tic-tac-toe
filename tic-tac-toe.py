@@ -281,7 +281,7 @@ def bot_move(bot_number):
                 [1, 3], [5, 7]
             ]
 
-            if len(p) == 2 and sorted([p[0][0], p[1][0]]) in cases or len(bot_moves) > 0:
+            if len(p) == 2 and sorted([p[0][0], p[1][0]]) in cases or len(bot_moves) > 0: # This section will only trigger for the next moves after the first
                 diag_move: bool = False
                 opponent_moves = [i for i in range(len(board)) if board[i] == player_dict[3 - bot_number]]
 
@@ -293,13 +293,13 @@ def bot_move(bot_number):
                                 if i in pool:
                                     best_moves.append(pool)
 
-                    moves = []
+                    moves = [] # Extracts all best moves into one list
                     for lst in best_moves:
                         for elem in lst:
                             moves.append(elem)
 
                     while len(moves) != 0:
-                        slot = rand.choice(moves)
+                        slot = rand.choice(moves) # We are only looking for a corner slot move in this case
 
                         if slot % 2 == 0 and board[slot] == ' ':
                             board[slot] = player_dict[bot_number]
